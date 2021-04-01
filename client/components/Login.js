@@ -35,6 +35,11 @@ export default function Login() {
 
     const [id, setid] = useState("")
 
+    const setUserId = () => {
+        console.log("Setting UserId: ", id)
+        localStorage.setItem("userId", id)
+    }
+
     return (
         <Card className={classes.root}>
             <CardContent>
