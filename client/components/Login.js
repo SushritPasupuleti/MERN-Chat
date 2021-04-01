@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -11,6 +11,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SendIcon from '@material-ui/icons/Send';
 import clsx from 'clsx';
+import { v4 as uuidV4 } from 'uuid';
 
 const useStyles = makeStyles({
     root: {
@@ -36,8 +37,9 @@ export default function Login() {
     const [id, setid] = useState("")
 
     const setUserId = () => {
-        console.log("Setting UserId: ", id)
-        localStorage.setItem("userId", id)
+        const newId = uuidV4();
+        console.log("Setting UserId: ", newId)
+        localStorage.setItem("userId", newId)
     }
 
     return (
@@ -51,7 +53,7 @@ export default function Login() {
                         id="outlined-adornment-weight"
                         value={id}
                         onChange={(e) => setid(e.target.value)}
-                        endAdornment={<InputAdornment position="end"><SendIcon></SendIcon></InputAdornment>}
+                        endAdornment={<InputAdornment position="end"><SendIcon onClick={() => setUserId()}></SendIcon></InputAdornment>}
                         aria-describedby="outlined-weight-helper-text"
                         inputProps={{
                             'aria-label': 'weight',
